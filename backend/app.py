@@ -36,9 +36,9 @@ def create_student():
         data = request.json
         name = data.get("name")
         course = data.get("course")
-        mark = data.get("mark")
+        mark = data.get("mark", 0)
 
-        if not name or not course or mark is None:
+        if not name or not course:
             return jsonify({"error": "Missing required fields"}), 404
 
         new_student = db.insert_student(name, course, mark)
